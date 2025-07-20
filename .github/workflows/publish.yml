@@ -15,28 +15,41 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v3
       with: 
-          node-version: '16.0.0'
+        node-version: '16.0.0'
+    
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+    
     - uses: actions/cache@v3
-      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      id: yarn-cache
       with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        path: |
+          node_modules
+          ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
-    - run: yarn add vuepress-theme-antdocs -d
+    
     - run: yarn install
-    - run: export NODE_OPTIONS=--max_old_space_size=8193
+    - run: yarn add vuepress-theme-antdocs -d
+    
+    # 如果需要替换 Secrets
     # - run: sed -i 's/GITHUB_ClientId/${{ secrets.CLIENTID }}/g' docs/.vuepress/config.js
     # - run: sed -i 's/GITHUB_ClientSecret/${{ secrets.CLIENTSECRET }}/g' docs/.vuepress/config.js
+    
     - run: yarn docs:build
+      env:
+        NODE_OPTIONS: --max_old_space_size=8193
+    
+    - name: Verify build output
+      run: ls -la ./docs/.vuepress/dist
+    
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3.9.3
       with:
         publish_dir: ./docs/.vuepress/dist
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        user_name: 'WgpSec Continuous Integration' 
-        user_email: 'ci@wgpsec.org'  
-        cname: vicr666.github.io
+        user_name: 'Vicr' 
+        user_email: 'Vicrpwn@outlook.com'
+        # cname: example.com  # 仅需在自定义域名时启用
