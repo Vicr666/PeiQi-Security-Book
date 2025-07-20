@@ -1,10 +1,10 @@
 module.exports = {
-  title: 'PeiQi文库',
+  title: 'PeiQi文库🍃',
   theme: 'antdocs',
   description: '面向网络安全从业者的知识文库',
   // 注入到当前页面的 HTML <head> 中的标签
   head: [
-    ['link', { rel: 'icon', href: 'https://security-1310978225.cos.ap-beijing.myqcloud.com/publichttps://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg' }], // 增加一个自定义的 favicon(网页标签的图标)
+    ['link', { rel: 'icon', href: 'https://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg' }], // 增加一个自定义的 favicon(网页标签的图标)
   ],
   markdown: {
     lineNumbers: true // 代码块显示行号
@@ -34,6 +34,6 @@ module.exports = {
     lastUpdated: '上次更新',
     logo: 'https://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg',
     repo: 'https://github.com/Vicr666/PeiQi-Security-Book/',
-    editLinks: true,
+    editLinks: false,
   }
 };

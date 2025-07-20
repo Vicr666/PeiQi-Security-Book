@@ -17,11 +17,7 @@ module.exports = [
         {
           text: "个人扩展",
           link: "/about/expansion",
-        },
-        {
-          text: "支持项目",
-          link: "/about/support",
-        },
+        }
       ],
     },
     {
