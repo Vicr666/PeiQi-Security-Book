@@ -15,7 +15,7 @@ title: PeiQi0/PeiQi-WIKI-Book
         <a slot="author">PeiQi</a>
         <a-avatar
           slot="avatar"
-          src="/img/home.svg"
+          src="https://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg"
           alt="PeiQi"
         />
         <p slot="content">

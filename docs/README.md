@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg
+heroImage: https://security-1310978225.cos.ap-beijing.myqcloud.com/publichttps://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg
 actionBtn:
   text: 开始使用🍃
   link: /about/
