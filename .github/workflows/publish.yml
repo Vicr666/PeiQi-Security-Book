@@ -33,11 +33,7 @@ jobs:
     
     - run: yarn install
     - run: yarn add vuepress-theme-antdocs -d
-    
-    # 如果需要替换 Secrets
-    # - run: sed -i 's/GITHUB_ClientId/${{ secrets.CLIENTID }}/g' docs/.vuepress/config.js
-    # - run: sed -i 's/GITHUB_ClientSecret/${{ secrets.CLIENTSECRET }}/g' docs/.vuepress/config.js
-    
+        
     - run: yarn docs:build
       env:
         NODE_OPTIONS: --max_old_space_size=8193
