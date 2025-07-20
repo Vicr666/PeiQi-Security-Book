@@ -1,4 +1,4 @@
-name: Build
+name: Build and Deploy
 
 on:
   push:
@@ -12,28 +12,42 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     
     steps:
-      - uses: actions/checkout@v4  # 使用最新版本
+      - uses: actions/checkout@v4
 
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'  # 关键修复：升级 Node.js 版本
+          node-version: '20.x'
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT  # 新语法
-
-      - uses: actions/cache@v4  # 使用最新版本
+      - name: Cache dependencies
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |
             node_modules
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            $(yarn cache dir)
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-      - run: yarn install --frozen-lockfile  # 强制使用 lockfile 确保一致性
-      - run: yarn add vuepress-theme-antdocs -D  # 注意用 -D（开发依赖）
+      - run: yarn install --frozen-lockfile
+      - run: yarn add vuepress-theme-antdocs -D
 
       - run: yarn docs:build
         env:
-          NODE_OPTIONS: --max_old_space_size=8193  # 解决内存限制
+          NODE_OPTIONS: --max_old_space_size=8193
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vuepress/dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'  # 仅 main 分支触发部署
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
