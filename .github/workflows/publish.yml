@@ -1,4 +1,4 @@
-name: Publish
+name: Build
 
 on:
   push:
@@ -9,43 +9,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with: 
-        node-version: '16.0.0'
-    
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    
-    - uses: actions/cache@v3
-      id: yarn-cache
-      with:
-        path: |
-          node_modules
-          ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    
-    - run: yarn install
-    - run: yarn add vuepress-theme-antdocs -d
-        
-    - run: yarn docs:build
-      env:
-        NODE_OPTIONS: --max_old_space_size=8193
-    
-    - name: Verify build output
-      run: ls -la ./docs/.vuepress/dist
-    
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3.9.3
-      with:
-        publish_dir: ./docs/.vuepress/dist
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        user_name: 'Vicr' 
-        user_email: 'Vicrpwn@outlook.com'
-        # cname: example.com  # 仅需在自定义域名时启用
+      - uses: actions/checkout@v4  # 使用最新版本
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'  # 关键修复：升级 Node.js 版本
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT  # 新语法
+
+      - uses: actions/cache@v4  # 使用最新版本
+        id: yarn-cache
+        with:
+          path: |
+            node_modules
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - run: yarn install --frozen-lockfile  # 强制使用 lockfile 确保一致性
+      - run: yarn add vuepress-theme-antdocs -D  # 注意用 -D（开发依赖）
+
+      - run: yarn docs:build
+        env:
+          NODE_OPTIONS: --max_old_space_size=8193  # 解决内存限制
