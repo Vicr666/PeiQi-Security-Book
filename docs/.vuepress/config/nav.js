@@ -147,23 +147,6 @@ module.exports = [
           link: "/dynamic/intelligence",
         },
       ],
-    },
-    {
-      text: '友情链接',
-      items: [
-        {
-          text: "合作伙伴",
-          link: "/cooperation/",
-        },
-        {
-          text: "安全招聘",
-          link: "/cooperation/recruit/北京微步在线科技有限公司",
-        },
-        {
-          text: "开源项目",
-          link: "/cooperation/project/PeiQi0-PeiQi-WIKI-Book",
-        },
-      ],
     }
   ];
   

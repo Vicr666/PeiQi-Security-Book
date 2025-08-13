@@ -24,6 +24,5 @@ module.exports = {
     '/ctf/pwn': require('../../ctf/pwn/sidebar_contents'),
     '/ctf/web': require('../../ctf/web/sidebar_contents'),
     '/ctf/reverse': require('../../ctf/reverse/sidebar_contents'),
-    '/cooperation/': require('../../cooperation/sidebar_contents'),
   };
   

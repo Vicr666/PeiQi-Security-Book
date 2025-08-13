@@ -12,13 +12,13 @@ features:
 head: [
     # ['link', { rel: 'icon', href: 'https://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg' }],
     ['meta', { name: 'referrer', content: 'never' }],
-    ['meta', { name: 'keywords', content: '知识库,漏洞复现,PeiQi文库,代码审计,渗透测试' }],
+    ['meta', { name: 'keywords', content: '知识库,漏洞复现,V文库,代码审计,渗透测试' }],
   ]
 ---
 
 </br>
 </br>
-<a-alert type="info" message="提示" description="由于传播、利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者不为此承担任何责任。PeiQi文库 拥有对此文章的修改和解释权如欲转载或传播此文章，必须保证此文章的完整性，包括版权声明等全部内容。未经作者允许，不得任意修改或者增减此文章内容，不得以任何方式将其用于商业目的。" showIcon>
+<a-alert type="info" message="提示" description="由于传播、利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者不为此承担任何责任。V文库 拥有对此文章的修改和解释权如欲转载或传播此文章，必须保证此文章的完整性，包括版权声明等全部内容。未经作者允许，不得任意修改或者增减此文章内容，不得以任何方式将其用于商业目的。" showIcon>
 </a-alert>
 
 </br>

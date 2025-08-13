@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'PeiQi文库🍃',
+  title: 'V文库🍃',
   theme: 'antdocs',
   description: '面向网络安全从业者的知识文库',
   // 注入到当前页面的 HTML <head> 中的标签
@@ -15,7 +15,7 @@ module.exports = {
       platform: 'github',
 
       // 其他的 Vssue 配置
-      owner: 'PeiQi0',
+      owner: 'Vicr',
       repo: 'Wiki-Book-Talk',
       clientId: '0df327771daf7fce68df',
       clientSecret: '8cba9a84153c8b0cf30926244624665f987f8148',
@@ -33,7 +33,7 @@ module.exports = {
     sidebarDepth: 0,
     lastUpdated: '上次更新',
     logo: 'https://security-1310978225.cos.ap-beijing.myqcloud.com/public/img/home.svg',
-    repo: 'https://github.com/Vicr666/PeiQi-Security-Book/',
+    repo: 'https://github.com/Vicr666/vicr666.github.io',
     editLinks: false,
   }
 };
